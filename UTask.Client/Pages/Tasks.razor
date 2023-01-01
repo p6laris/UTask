@@ -1,0 +1,64 @@
+﻿@page "/tasks"
+
+<MudGrid>
+    <MudItem xs="6">
+        <MudText Typo="Typo.h2">Tasks</MudText>
+    </MudItem>
+    <MudItem xs="6">
+        <MudToolBar>
+            <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" Class="mr-5" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="AddTask" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Edit" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Remove" Color="Color.Inherit" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Settings" Color="Color.Inherit" />
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Outlined.Notifications" />
+            <MudIconButton Icon="@Icons.Material.Outlined.PushPin" />
+            <MudIconButton Icon="@Icons.Material.Outlined.PeopleAlt" />
+            <MudIconButton Icon="@Icons.Material.Outlined.MoreVert" Color="Color.Inherit" />
+        </MudToolBar>
+    </MudItem>
+    @if (AllTask is not null)
+    {
+
+
+        @foreach (var task in AllTask)
+        {
+            <MudItem xs="12">
+                <MudPaper Elevation="1">
+                    <MudStack Row=true AlignItems="AlignItems.Center">
+                        <MudIconButton Icon="@Icons.Filled.CheckBox"></MudIconButton>
+                        <MudText Typo="Typo.body1">@task.Title</MudText>
+                        <MudChip Color="Color.Primary">@task.Priority.ToString()</MudChip>
+                    </MudStack>
+                </MudPaper>
+            </MudItem>
+
+
+        }
+
+
+    }
+    else
+    {
+
+
+        @for (int i = 0; i < 10; i++)
+        {
+            <MudItem xs="12">
+                <MudPaper Elevation="1">
+                    <MudStack Row=true AlignItems="AlignItems.Center">
+                        <MudSkeleton Animation="Animation.Wave" SkeletonType="SkeletonType.Rectangle" Height="40px" Width="40px" />
+                        <MudSkeleton Animation="Animation.Wave" SkeletonType="SkeletonType.Text" Height="50px" Width="300px" />
+                        <MudSkeleton Animation="Animation.Wave" SkeletonType="SkeletonType.Rectangle" Height="70px" Width="200px" />
+                    </MudStack>
+                </MudPaper>
+            </MudItem>
+
+        }
+    }
+
+</MudGrid>
+
+
+

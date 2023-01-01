@@ -1,0 +1,38 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudGrid>
+            <MudItem xs="12" sm="7">
+                <MudPaper Class="pa-4">
+                    <MudForm >
+                        <MudTextField T="string" Label="Username" Required="true" RequiredError="User name is required!" />
+                        <MudTextField T="string" Label="Email" Required="true" RequiredError="Email is required!"
+                                      />
+                        <MudTextField T="string" Label="Password" HelperText="Choose a strong password"
+                                      InputType="InputType.Password"
+                                      RequiredError="Password is required!" />
+                        <MudTextField T="string"
+                                      Label="Password" HelperText="Repeat the password" InputType="InputType.Password"></MudTextField>
+                        <div class="d-flex">
+                            <MudRadioGroup T="string" Required="true" RequiredError="Account type is required!">
+                                <MudRadio Option="@("Personal")">Personal</MudRadio>
+                                <MudRadio Option="@("Professional")">Professional</MudRadio>
+                            </MudRadioGroup>
+                        </div>
+
+                    </MudForm>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter]
+    MudDialogInstance MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+}
